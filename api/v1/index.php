@@ -4,7 +4,6 @@ header('Content-Type: application/json; charset=utf-8');
 
 require_once 'classes/Carteira.php';
 
-
 class Rest
 {
     public static function open($req)
