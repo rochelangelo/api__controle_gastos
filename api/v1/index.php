@@ -5,6 +5,8 @@ header('Access-Control-Allow-Origin: *');
 
 require_once 'classes/Carteira.php';
 
+
+
 class Rest
 {
     public static function open($req)
@@ -23,7 +25,7 @@ class Rest
             if (class_exists($classe)) {
                 if (method_exists($classe, $metodo)) {
                     $retorno = call_user_func_array(array(new $classe, $metodo), $parametros);
-    
+                    
                     return json_encode(array('status' => 'sucesso', 'dados' => $retorno));
                 } else {
                     return json_encode(array('status' => 'erro', 'dados' => 'Metodo requisitado, INEXISTENTE!'));
@@ -36,6 +38,10 @@ class Rest
         }
         
     }
+
+    
+
+
 }
 
 if (isset($_REQUEST)) {

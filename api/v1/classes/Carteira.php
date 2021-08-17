@@ -24,14 +24,28 @@ class Carteira
         $sql->execute();
 
         $resultados = array();
+        
 
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+
+            $novaData = "";
+            $array = explode('-', $row['date']);
+            $novaData = $array[2].'/'.$array[1] .'/'.$array[0];
+
+            $novoAmount = intval($row['amount']);
+
+            $row['amount'] = $novoAmount;
+
+            $row['date'] = $novaData;
+
             $resultados[] = $row;
         }
 
         if (!$resultados) {
             throw new Exception("Nenhum registro na Carteira!");
         }
+
+        
         return $resultados;
     }
 
